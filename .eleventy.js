@@ -1,6 +1,7 @@
 module.exports = function(eleventyConfig) {
   // Watch changes in these folders
   eleventyConfig.addPassthroughCopy("src/assets");
+  eleventyConfig.addPassthroughCopy("./src/style/style.css");
 
   return {
     dir: {
