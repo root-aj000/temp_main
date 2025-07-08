@@ -1,7 +1,30 @@
 module.exports = function(eleventyConfig) {
+
+
+
+
+
   // Watch changes in these folders
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("./src/style");
+
+
+
+
+// Collections per content type
+  eleventyConfig.addCollection("blog", (collection) =>
+    collection.getFilteredByGlob("src/blog/*.md")
+  );
+  eleventyConfig.addCollection("services", (collection) =>
+    collection.getFilteredByGlob("src/services/*.md")
+  );
+  eleventyConfig.addCollection("cases", (collection) =>
+    collection.getFilteredByGlob("src/case-studies/*.md")
+  );
+
+
+
+
 
   return {
     dir: {
