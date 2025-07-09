@@ -1,47 +1,23 @@
 import os
 
-def create_structure_from_text(structure_file_path):
-    with open(structure_file_path, 'r') as f:
-        lines = f.readlines()
+def create_structure_from_list(structure_file_path):
+    with open(structure_file_path, 'r', encoding='utf-8') as f:
+        lines = [line.strip() for line in f if line.strip()]
 
-    base_stack = []
-    indent_stack = [-1]  # Keeps track of indentation levels
-    current_path = ""
-
-    for line in lines:
-        # Skip empty lines
-        if not line.strip():
-            continue
-
-        # Strip leading and trailing whitespace
-        raw = line.rstrip()
-        stripped = raw.lstrip()
-        indent_level = len(raw) - len(stripped)
-
-        # Get current directory or file name
-        name = stripped.replace("├── ", "").replace("└── ", "").replace("│   ", "").strip()
-        is_dir = name.endswith("/")
-
-        # Adjust the stack to the current indent level
-        while indent_level <= indent_stack[-1]:
-            base_stack.pop()
-            indent_stack.pop()
-
-        base_stack.append(name)
-        indent_stack.append(indent_level)
-
-        # Join the current path
-        current_path = os.path.join(*base_stack)
-
-        if is_dir:
-            os.makedirs(current_path, exist_ok=True)
+    for path in lines:
+        path = path.replace("\\", "/")  # Ensure forward slashes
+        if path.endswith("/"):
+            # It's a directory
+            os.makedirs(path, exist_ok=True)
         else:
-            dir_path = os.path.dirname(current_path)
-            os.makedirs(dir_path, exist_ok=True)
-            open(current_path, 'a').close()  # Create empty file
+            # It's a file
+            dir_path = os.path.dirname(path)
+            if dir_path:
+                os.makedirs(dir_path, exist_ok=True)
+            with open(path, 'a', encoding='utf-8'):
+                pass  # Just touch the file
 
-    print("✅ Directory structure generated successfully.")
+    print("All files and folders created successfully.")
 
 if __name__ == "__main__":
-    structure_txt_path = "structure.txt"  # Update path if needed
-    create_structure_from_text(structure_txt_path)
+    create_structure_from_list("St.txt")
