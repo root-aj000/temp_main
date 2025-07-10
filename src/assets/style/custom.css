@@ -1,0 +1,36 @@
+/* only for service page HOW IT WORKS SECTION */
+    
+       .swiper-wrapper {
+          height: fit-content !important;
+          width: 100% !important;
+      }
+      .swiper-pagination{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
+          position: relative;
+      }
+      .swiper-pagination-bullet {
+          width: 42px !important;
+          height: 42px !important;
+          text-align: center !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          line-height: 26px !important;
+          font-size: 16px;
+          color: #ffffff;
+          opacity: 1;
+          background: #030f1b;
+          border: 1px solid #E5E7EB;
+      }
+      .swiper-pagination-bullet-active {
+      color: #fff;
+      background: #f12603 !important ;
+      }
+      .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+        bottom: var(--swiper-pagination-bottom,10px);
+      }
+
+  /* ENDS HERE */
