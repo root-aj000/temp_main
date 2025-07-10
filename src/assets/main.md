@@ -1,5 +1,6 @@
 ---
 title : 
+layout : index.njk
 p-cta :
 s-cta :
 mhl-1 :
